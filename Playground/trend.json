@@ -1,0 +1,820 @@
+{
+"default": {
+"timelineData": [
+    {
+        "time": "1719190500",
+        "formattedTime": "Jun 23, 2024 at 7:55\u202fPM",
+        "formattedAxisTime": "7:55\u202fPM",
+        "value": [
+            68
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "68"
+        ]
+    },
+    {
+        "time": "1719190560",
+        "formattedTime": "Jun 23, 2024 at 7:56\u202fPM",
+        "formattedAxisTime": "7:56\u202fPM",
+        "value": [
+            63
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "63"
+        ]
+    },
+    {
+        "time": "1719190620",
+        "formattedTime": "Jun 23, 2024 at 7:57\u202fPM",
+        "formattedAxisTime": "7:57\u202fPM",
+        "value": [
+            61
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "61"
+        ]
+    },
+    {
+        "time": "1719190680",
+        "formattedTime": "Jun 23, 2024 at 7:58\u202fPM",
+        "formattedAxisTime": "7:58\u202fPM",
+        "value": [
+            68
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "68"
+        ]
+    },
+    {
+        "time": "1719190740",
+        "formattedTime": "Jun 23, 2024 at 7:59\u202fPM",
+        "formattedAxisTime": "7:59\u202fPM",
+        "value": [
+            77
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "77"
+        ]
+    },
+    {
+        "time": "1719190800",
+        "formattedTime": "Jun 23, 2024 at 8:00\u202fPM",
+        "formattedAxisTime": "8:00\u202fPM",
+        "value": [
+            90
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "90"
+        ]
+    },
+    {
+        "time": "1719190860",
+        "formattedTime": "Jun 23, 2024 at 8:01\u202fPM",
+        "formattedAxisTime": "8:01\u202fPM",
+        "value": [
+            84
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "84"
+        ]
+    },
+    {
+        "time": "1719190920",
+        "formattedTime": "Jun 23, 2024 at 8:02\u202fPM",
+        "formattedAxisTime": "8:02\u202fPM",
+        "value": [
+            67
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "67"
+        ]
+    },
+    {
+        "time": "1719190980",
+        "formattedTime": "Jun 23, 2024 at 8:03\u202fPM",
+        "formattedAxisTime": "8:03\u202fPM",
+        "value": [
+            85
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "85"
+        ]
+    },
+    {
+        "time": "1719191040",
+        "formattedTime": "Jun 23, 2024 at 8:04\u202fPM",
+        "formattedAxisTime": "8:04\u202fPM",
+        "value": [
+            87
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "87"
+        ]
+    },
+    {
+        "time": "1719191100",
+        "formattedTime": "Jun 23, 2024 at 8:05\u202fPM",
+        "formattedAxisTime": "8:05\u202fPM",
+        "value": [
+            64
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "64"
+        ]
+    },
+    {
+        "time": "1719191160",
+        "formattedTime": "Jun 23, 2024 at 8:06\u202fPM",
+        "formattedAxisTime": "8:06\u202fPM",
+        "value": [
+            81
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "81"
+        ]
+    },
+    {
+        "time": "1719191220",
+        "formattedTime": "Jun 23, 2024 at 8:07\u202fPM",
+        "formattedAxisTime": "8:07\u202fPM",
+        "value": [
+            100
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "100"
+        ]
+    },
+    {
+        "time": "1719191280",
+        "formattedTime": "Jun 23, 2024 at 8:08\u202fPM",
+        "formattedAxisTime": "8:08\u202fPM",
+        "value": [
+            81
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "81"
+        ]
+    },
+    {
+        "time": "1719191340",
+        "formattedTime": "Jun 23, 2024 at 8:09\u202fPM",
+        "formattedAxisTime": "8:09\u202fPM",
+        "value": [
+            85
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "85"
+        ]
+    },
+    {
+        "time": "1719191400",
+        "formattedTime": "Jun 23, 2024 at 8:10\u202fPM",
+        "formattedAxisTime": "8:10\u202fPM",
+        "value": [
+            75
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "75"
+        ]
+    },
+    {
+        "time": "1719191460",
+        "formattedTime": "Jun 23, 2024 at 8:11\u202fPM",
+        "formattedAxisTime": "8:11\u202fPM",
+        "value": [
+            70
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "70"
+        ]
+    },
+    {
+        "time": "1719191520",
+        "formattedTime": "Jun 23, 2024 at 8:12\u202fPM",
+        "formattedAxisTime": "8:12\u202fPM",
+        "value": [
+            76
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "76"
+        ]
+    },
+    {
+        "time": "1719191580",
+        "formattedTime": "Jun 23, 2024 at 8:13\u202fPM",
+        "formattedAxisTime": "8:13\u202fPM",
+        "value": [
+            75
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "75"
+        ]
+    },
+    {
+        "time": "1719191640",
+        "formattedTime": "Jun 23, 2024 at 8:14\u202fPM",
+        "formattedAxisTime": "8:14\u202fPM",
+        "value": [
+            87
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "87"
+        ]
+    },
+    {
+        "time": "1719191700",
+        "formattedTime": "Jun 23, 2024 at 8:15\u202fPM",
+        "formattedAxisTime": "8:15\u202fPM",
+        "value": [
+            86
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "86"
+        ]
+    },
+    {
+        "time": "1719191760",
+        "formattedTime": "Jun 23, 2024 at 8:16\u202fPM",
+        "formattedAxisTime": "8:16\u202fPM",
+        "value": [
+            82
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "82"
+        ]
+    },
+    {
+        "time": "1719191820",
+        "formattedTime": "Jun 23, 2024 at 8:17\u202fPM",
+        "formattedAxisTime": "8:17\u202fPM",
+        "value": [
+            91
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "91"
+        ]
+    },
+    {
+        "time": "1719191880",
+        "formattedTime": "Jun 23, 2024 at 8:18\u202fPM",
+        "formattedAxisTime": "8:18\u202fPM",
+        "value": [
+            83
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "83"
+        ]
+    },
+    {
+        "time": "1719191940",
+        "formattedTime": "Jun 23, 2024 at 8:19\u202fPM",
+        "formattedAxisTime": "8:19\u202fPM",
+        "value": [
+            66
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "66"
+        ]
+    },
+    {
+        "time": "1719192000",
+        "formattedTime": "Jun 23, 2024 at 8:20\u202fPM",
+        "formattedAxisTime": "8:20\u202fPM",
+        "value": [
+            72
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "72"
+        ]
+    },
+    {
+        "time": "1719192060",
+        "formattedTime": "Jun 23, 2024 at 8:21\u202fPM",
+        "formattedAxisTime": "8:21\u202fPM",
+        "value": [
+            95
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "95"
+        ]
+    },
+    {
+        "time": "1719192120",
+        "formattedTime": "Jun 23, 2024 at 8:22\u202fPM",
+        "formattedAxisTime": "8:22\u202fPM",
+        "value": [
+            79
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "79"
+        ]
+    },
+    {
+        "time": "1719192180",
+        "formattedTime": "Jun 23, 2024 at 8:23\u202fPM",
+        "formattedAxisTime": "8:23\u202fPM",
+        "value": [
+            88
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "88"
+        ]
+    },
+    {
+        "time": "1719192240",
+        "formattedTime": "Jun 23, 2024 at 8:24\u202fPM",
+        "formattedAxisTime": "8:24\u202fPM",
+        "value": [
+            94
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "94"
+        ]
+    },
+    {
+        "time": "1719192300",
+        "formattedTime": "Jun 23, 2024 at 8:25\u202fPM",
+        "formattedAxisTime": "8:25\u202fPM",
+        "value": [
+            98
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "98"
+        ]
+    },
+    {
+        "time": "1719192360",
+        "formattedTime": "Jun 23, 2024 at 8:26\u202fPM",
+        "formattedAxisTime": "8:26\u202fPM",
+        "value": [
+            93
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "93"
+        ]
+    },
+    {
+        "time": "1719192420",
+        "formattedTime": "Jun 23, 2024 at 8:27\u202fPM",
+        "formattedAxisTime": "8:27\u202fPM",
+        "value": [
+            82
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "82"
+        ]
+    },
+    {
+        "time": "1719192480",
+        "formattedTime": "Jun 23, 2024 at 8:28\u202fPM",
+        "formattedAxisTime": "8:28\u202fPM",
+        "value": [
+            76
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "76"
+        ]
+    },
+    {
+        "time": "1719192540",
+        "formattedTime": "Jun 23, 2024 at 8:29\u202fPM",
+        "formattedAxisTime": "8:29\u202fPM",
+        "value": [
+            79
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "79"
+        ]
+    },
+    {
+        "time": "1719192600",
+        "formattedTime": "Jun 23, 2024 at 8:30\u202fPM",
+        "formattedAxisTime": "8:30\u202fPM",
+        "value": [
+            84
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "84"
+        ]
+    },
+    {
+        "time": "1719192660",
+        "formattedTime": "Jun 23, 2024 at 8:31\u202fPM",
+        "formattedAxisTime": "8:31\u202fPM",
+        "value": [
+            93
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "93"
+        ]
+    },
+    {
+        "time": "1719192720",
+        "formattedTime": "Jun 23, 2024 at 8:32\u202fPM",
+        "formattedAxisTime": "8:32\u202fPM",
+        "value": [
+            96
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "96"
+        ]
+    },
+    {
+        "time": "1719192780",
+        "formattedTime": "Jun 23, 2024 at 8:33\u202fPM",
+        "formattedAxisTime": "8:33\u202fPM",
+        "value": [
+            88
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "88"
+        ]
+    },
+    {
+        "time": "1719192840",
+        "formattedTime": "Jun 23, 2024 at 8:34\u202fPM",
+        "formattedAxisTime": "8:34\u202fPM",
+        "value": [
+            87
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "87"
+        ]
+    },
+    {
+        "time": "1719192900",
+        "formattedTime": "Jun 23, 2024 at 8:35\u202fPM",
+        "formattedAxisTime": "8:35\u202fPM",
+        "value": [
+            78
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "78"
+        ]
+    },
+    {
+        "time": "1719192960",
+        "formattedTime": "Jun 23, 2024 at 8:36\u202fPM",
+        "formattedAxisTime": "8:36\u202fPM",
+        "value": [
+            92
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "92"
+        ]
+    },
+    {
+        "time": "1719193020",
+        "formattedTime": "Jun 23, 2024 at 8:37\u202fPM",
+        "formattedAxisTime": "8:37\u202fPM",
+        "value": [
+            71
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "71"
+        ]
+    },
+    {
+        "time": "1719193080",
+        "formattedTime": "Jun 23, 2024 at 8:38\u202fPM",
+        "formattedAxisTime": "8:38\u202fPM",
+        "value": [
+            78
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "78"
+        ]
+    },
+    {
+        "time": "1719193140",
+        "formattedTime": "Jun 23, 2024 at 8:39\u202fPM",
+        "formattedAxisTime": "8:39\u202fPM",
+        "value": [
+            91
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "91"
+        ]
+    },
+    {
+        "time": "1719193200",
+        "formattedTime": "Jun 23, 2024 at 8:40\u202fPM",
+        "formattedAxisTime": "8:40\u202fPM",
+        "value": [
+            91
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "91"
+        ]
+    },
+    {
+        "time": "1719193260",
+        "formattedTime": "Jun 23, 2024 at 8:41\u202fPM",
+        "formattedAxisTime": "8:41\u202fPM",
+        "value": [
+            81
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "81"
+        ]
+    },
+    {
+        "time": "1719193320",
+        "formattedTime": "Jun 23, 2024 at 8:42\u202fPM",
+        "formattedAxisTime": "8:42\u202fPM",
+        "value": [
+            83
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "83"
+        ]
+    },
+    {
+        "time": "1719193380",
+        "formattedTime": "Jun 23, 2024 at 8:43\u202fPM",
+        "formattedAxisTime": "8:43\u202fPM",
+        "value": [
+            92
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "92"
+        ]
+    },
+    {
+        "time": "1719193440",
+        "formattedTime": "Jun 23, 2024 at 8:44\u202fPM",
+        "formattedAxisTime": "8:44\u202fPM",
+        "value": [
+            91
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "91"
+        ]
+    },
+    {
+        "time": "1719193500",
+        "formattedTime": "Jun 23, 2024 at 8:45\u202fPM",
+        "formattedAxisTime": "8:45\u202fPM",
+        "value": [
+            87
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "87"
+        ]
+    },
+    {
+        "time": "1719193560",
+        "formattedTime": "Jun 23, 2024 at 8:46\u202fPM",
+        "formattedAxisTime": "8:46\u202fPM",
+        "value": [
+            83
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "83"
+        ]
+    },
+    {
+        "time": "1719193620",
+        "formattedTime": "Jun 23, 2024 at 8:47\u202fPM",
+        "formattedAxisTime": "8:47\u202fPM",
+        "value": [
+            84
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "84"
+        ]
+    },
+    {
+        "time": "1719193680",
+        "formattedTime": "Jun 23, 2024 at 8:48\u202fPM",
+        "formattedAxisTime": "8:48\u202fPM",
+        "value": [
+            83
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "83"
+        ]
+    },
+    {
+        "time": "1719193740",
+        "formattedTime": "Jun 23, 2024 at 8:49\u202fPM",
+        "formattedAxisTime": "8:49\u202fPM",
+        "value": [
+            99
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "99"
+        ]
+    },
+    {
+        "time": "1719193800",
+        "formattedTime": "Jun 23, 2024 at 8:50\u202fPM",
+        "formattedAxisTime": "8:50\u202fPM",
+        "value": [
+            84
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "84"
+        ]
+    },
+    {
+        "time": "1719193860",
+        "formattedTime": "Jun 23, 2024 at 8:51\u202fPM",
+        "formattedAxisTime": "8:51\u202fPM",
+        "value": [
+            76
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "76"
+        ]
+    },
+    {
+        "time": "1719193920",
+        "formattedTime": "Jun 23, 2024 at 8:52\u202fPM",
+        "formattedAxisTime": "8:52\u202fPM",
+        "value": [
+            97
+        ],
+        "hasData": [
+            true
+        ],
+        "formattedValue": [
+            "97"
+        ],
+        "isPartial": true
+    }
+],
+"averages": []
+}
+}
