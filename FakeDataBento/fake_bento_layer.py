@@ -3,6 +3,13 @@ import asyncio
 import json
 import pandas as pd
 from common.websocket_helpers import send_socket_message
+import sys
+import os
+
+project_dir = os.path.abspath(os.path.dirname(__file__))
+if project_dir not in sys.path:
+    sys.path.append(project_dir)
+
 
 SOCKET_URL = "ws://localhost:8000"
 
