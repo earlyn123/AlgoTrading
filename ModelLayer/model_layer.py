@@ -1,13 +1,14 @@
-# TODO
-# WS server to accept clean and aggegated 10 second chunks lives here
-# call the model to get the predicted signals
-# pass signals to the Execution Layer
-# Will act as a WS client for the Execution Layer WS server 
 import asyncio
 import websockets
 from .model import model
 from common.websocket_helpers import send_socket_message
 from common.decorators import backoff_reconnect
+import sys
+import os
+
+project_dir = os.path.abspath(os.path.dirname(__file__))
+if project_dir not in sys.path:
+    sys.path.append(project_dir)
 
 EXE_SOCKET_URL = "ws://localhost:8002"
 
