@@ -12,6 +12,7 @@ def backoff_reconnect(max_backoff=60):
                     print(f"Trying to connect to {socket_url}")
                     async with websockets.connect(socket_url) as ws:
                         print(f"Connected to {socket_url}")
+                        backoff = 1
                         return await some_layer_entrypoint(ws, *args, **kwargs)
                 except (websockets.exceptions.ConnectionClosedError, websockets.exceptions.ConnectionClosedOK, OSError) as e:
                     print(f"Connection failed: {e}")

@@ -13,36 +13,71 @@ if project_dir not in sys.path:
 
 nest_asyncio.apply()
 
+class OrderException(Exception):
+    pass
+
 '''
 Assuming shape of input JSON:
 {
   position: 'BUY'|'SELL'|'NOOP',
   volume: int,
-  ticker: string
+  ticker: string,
+  orderType: 'MARKET'|'LIMIT'|'STOP'|'STOPLIMIT'
+  limitPrice: float,
+  stopPrice: float
 }
 '''
 
-async def place_order(position: str, volume: int, ticker: str, gateway: IB):
+async def validate_and_create_order(signal_data: dict):
+    
+    position = signal_data.get('position', 'NOOP')
     if position == 'NOOP':
-        return ("No trade was placed this period (NOOP)",None, None)
-    contract = Stock(ticker, 'SMART', 'USD')
-    order = MarketOrder(position, volume)
-    # uncomment below to actually place the trade in TWS
-    # gateway.placeOrder(contract, order)
-    return ("Placed a trade", contract, order)
+        return None
+
+    if not (volume := signal_data.get('volume')):
+        raise OrderException("Volume required to place order")
+
+    limitPrice = signal_data.get('limitPrice')
+    stopPrice = signal_data.get('stopPrice')
+    orderType = signal_data.get('orderType')
+
+    match orderType:
+        case 'MARKET':
+            return MarketOrder(position, volume)
+        case 'LIMIT':
+            if not limitPrice:
+                raise OrderException("Limit price required for LIMIT order")
+            return LimitOrder(position, volume, limitPrice)
+        case 'STOP':
+            if not stopPrice:
+                raise OrderException("Stop price required for STOP order")
+            return StopOrder(position, volume, stopPrice)
+        case 'STOPLIMIT':
+            if not stopPrice or not limitPrice:
+                raise OrderException("Stop price AND limit price required for STOPLIMIT order")
+            return StopLimitOrder(position, volume, limitPrice, stopPrice)
+        case _:
+            raise OrderException("Invalid order type provided")
+
+async def place_order(signal_data: dict, gateway: IB):
+    # the contract will remain the same regardless of the order type
+    # order type is dependent on the orderType keyword
+    try:
+        order = await validate_and_create_order(signal_data)
+        if order is None:
+            return ("No trade was placed this period (NOOP)", None, None)
+        
+        contract = Stock(signal_data['ticker'], 'SMART', 'USD')
+        # gateway.placeOrder(contract, order) 
+        return ("Trade placed successfully", contract, order)
+    except OrderException as e:
+        return (f"Trade failed to process {e}", None, None)
 
 async def handle_signal_stream(websocket, path, gateway: IB):
     async for signal in websocket:
         signal_data = json.loads(signal)
         print(f"Recieved JSON Signal\n{signal_data}")
-        position: str = signal_data['position'].upper()
-        if position != 'NOOP':
-            volume: int = signal_data['volume']
-            ticker: str = signal_data['ticker'].upper()
-        else:
-            volume = 0
-            ticker = ''
-        message, placed_contract, placed_order = await place_order(position, volume, ticker, gateway)
+        message, placed_contract, placed_order = await place_order(signal_data, gateway)
         print(f"Submitted Trade:\n - {placed_contract}\n - {placed_order}\n")
 
 
