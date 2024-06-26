@@ -57,7 +57,7 @@ async def main():
     start_ws_server = websockets.serve(incoming_data_stream, "localhost", 8000)
     await start_ws_server
 
-    processing_task = asyncio.create_task(process_trades(MODEL_SOCKET_URL))
+    asyncio.create_task(process_trades(MODEL_SOCKET_URL))
     
     await asyncio.Future()
 
