@@ -2,7 +2,7 @@ import websockets
 import asyncio
 import json
 import pandas as pd
-from common.websocket_helpers import send_socket_message
+from Common.websocket_helpers import send_socket_message
 import sys
 import os
 

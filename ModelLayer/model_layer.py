@@ -1,8 +1,8 @@
 import asyncio
 import websockets
 from .model import model
-from common.websocket_helpers import send_socket_message
-from common.decorators import backoff_reconnect
+from Common.websocket_helpers import send_socket_message
+from Common.decorators import backoff_reconnect
 import sys
 import os
 
