@@ -28,6 +28,7 @@ async def clear_queue(queue):
         queue.get_nowait()
         queue.task_done()
 
+
 @backoff_reconnect()
 async def process_trades(model_ws):
     global trade_queue

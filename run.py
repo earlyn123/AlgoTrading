@@ -21,13 +21,16 @@ async def run_layer(layer):
         case 'exe':
             from ExecutionLayer.execution_layer import main as execution_main
             await execution_main()
+        case 'backtest':
+            from BacktestLayer.backtest_layer import main as backtest_main
+            await backtest_main()
         case _:
             print(f"unknown layer {layer}")
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run different layers")
-    parser.add_argument('layer', type=str, help='The layer to run (data, exe, model, bento)')
+    parser.add_argument('layer', type=str, help='The layer to run (data, exe, model, bento, backtest)')
     args = parser.parse_args()
     asyncio.run(run_layer(args.layer))
 
