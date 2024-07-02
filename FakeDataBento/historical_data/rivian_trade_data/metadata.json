@@ -1,0 +1,33 @@
+{
+    "version": 1,
+    "job_id": "DBEQ-20240702-BSSPD86TXW",
+    "query": {
+        "dataset": "DBEQ.BASIC",
+        "schema": "ohlcv-1s",
+        "symbols": [
+            "RIVN",
+            "F",
+            "LCID",
+            "TSLA",
+            "GM",
+            "QQQ"
+        ],
+        "stype_in": "raw_symbol",
+        "stype_out": "instrument_id",
+        "start": 1679961600000000000,
+        "end": 1717200000000000000,
+        "limit": null,
+        "encoding": "dbn",
+        "compression": "zstd"
+    },
+    "customizations": {
+        "pretty_px": false,
+        "pretty_ts": false,
+        "map_symbols": false,
+        "split_symbols": false,
+        "split_duration": "day",
+        "split_size": null,
+        "packaging": null,
+        "delivery": "download"
+    }
+}
