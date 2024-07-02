@@ -1,20 +1,17 @@
 {
     "version": 1,
-    "job_id": "DBEQ-20240702-BSSPD86TXW",
+    "job_id": "XNAS-20240628-YC6XW665MT",
     "query": {
-        "dataset": "DBEQ.BASIC",
-        "schema": "ohlcv-1s",
+        "dataset": "XNAS.ITCH",
+        "schema": "trades",
         "symbols": [
-            "RIVN",
-            "F",
             "LCID",
-            "TSLA",
             "GM",
-            "QQQ"
+            "F"
         ],
         "stype_in": "raw_symbol",
         "stype_out": "instrument_id",
-        "start": 1679961600000000000,
+        "start": 1590969600000000000,
         "end": 1717200000000000000,
         "limit": null,
         "encoding": "dbn",

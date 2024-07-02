@@ -68,7 +68,7 @@ async def place_order(signal_data: dict, gateway: IB):
             return ("No trade was placed this period (NOOP)", None, None)
         
         contract = Stock(signal_data['ticker'], 'SMART', 'USD')
-        # gateway.placeOrder(contract, order) 
+        gateway.placeOrder(contract, order) 
         return ("Trade placed successfully", contract, order)
     except OrderException as e:
         return (f"Trade failed to process {e}", None, None)
@@ -80,7 +80,6 @@ async def handle_signal_stream(websocket, path, gateway: IB):
         message, placed_contract, placed_order = await place_order(signal_data, gateway)
         print(f"Submitted Trade:\n - {placed_contract}\n - {placed_order}\n")
 
-
 async def start_exe_ws_server(ib_gateway: IB):
     execution_ws_server = websockets.serve(
         partial(handle_signal_stream, gateway=ib_gateway),
@@ -89,7 +88,6 @@ async def start_exe_ws_server(ib_gateway: IB):
     await execution_ws_server
     await asyncio.Future()
     
-
 async def main():
     print("Connecting to IB Gateway")
     ib = IB()
