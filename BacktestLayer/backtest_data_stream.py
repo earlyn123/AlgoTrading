@@ -2,6 +2,10 @@ import csv
 from datetime import datetime, time, timedelta
 from typing import Dict, List
 from BacktestLayer.tick import Tick
+import asyncio
+import websockets
+import pickle
+import logging
 
 class TickGenerator:
     # will only generate ticks from during trading hours
@@ -48,16 +52,17 @@ class TickAggregator:
     
     # pretty print for debugging
     def print_aggregated_data(self, aggregated_data) -> None:
-        print("\nData this period:")
+        logging.info("Data this period:")
         for symbol in self.symbols:
-            print(f"\tprocessed {len(aggregated_data[symbol])} ticks of {symbol} this period")
+            logging.info(f"\tprocessed {len(aggregated_data[symbol])} ticks of {symbol} this period")
 
 class StreamingEngine:
     
-    def __init__(self, model_ws_url, data_file_path, start_date, interval, market_open, market_close, symbols):
+    def __init__(self, model_ws_url, backtest_ws_url, data_file_path, start_date, interval, market_open, market_close, symbols):
         self.data_generator = TickGenerator(data_file_path, start_date, time.fromisoformat(market_open), time.fromisoformat(market_close))
         self.aggregator = TickAggregator(symbols)
         self.model_ws_url = model_ws_url
+        self.backtest_ws_url = backtest_ws_url
         self.market_open = market_open
         self.start_of_period = None
         self.interval = interval
@@ -78,34 +83,41 @@ class StreamingEngine:
     # no decorator during testing, not connecting to other websockets yet
     # @backoff_reconnect()
     async def stream_data(self):
-        for tick in self.data_generator:
-            if not self.start_of_period:
-                self.start_of_period = self.initalize_period(tick.ts_event)
+        async with websockets.connect(self.backtest_ws_url) as ws:
+            for tick in self.data_generator:
+                
+                # every tick we see here needs to be sent to BacktestEngine
+                await ws.send(pickle.dumps(tick))
 
-            if self.entering_new_period(tick.ts_event):
-
-                self.periods_in_day += 1
-                if any(self.aggregator.ticks.values()):
-                    aggregated_data = self.aggregator.aggregate_period()
-                    self.aggregator.print_aggregated_data(aggregated_data)
-
-                    # not implementing cross-layer websockets for backtesting yet
-                    # await websocket.send(json.dumps(aggregated_data))
-
-                if tick.ts_event.date() != self.start_of_period.date():
+                if not self.start_of_period:
                     self.start_of_period = self.initalize_period(tick.ts_event)
-                    
-                    # visualization during testing
-                    print(f"\n\nStarting New Day: {self.start_of_period.date()}  Ticks Today: {self.periods_in_day}")
-                    print('-------------------------------')
-                          
-                    self.periods_in_day = 0
-                else:
-                    self.start_of_period += timedelta(seconds=self.interval)
-            else:
-                self.aggregator.add_tick(tick)
 
-        if any(self.aggregator.ticks.values()):
-            aggregated_data = self.aggregator.aggregate_period()
-            # await websocket.send(json.dumps(aggregated_data))
-            # print(f'Sent aggregated data:\n {aggregated_data}\n')
+                if self.entering_new_period(tick.ts_event):
+
+                    self.periods_in_day += 1
+                    if any(self.aggregator.ticks.values()):
+                        aggregated_data = self.aggregator.aggregate_period()
+                        self.aggregator.print_aggregated_data(aggregated_data)
+
+                        # not implementing cross-layer websockets for backtesting yet
+                        # await websocket.send(json.dumps(aggregated_data))
+
+                    if tick.ts_event.date() != self.start_of_period.date():
+                        self.start_of_period = self.initalize_period(tick.ts_event)
+                        
+                        # visualization during testing
+                        logging.info(f"\n\nStarting New Day: {self.start_of_period.date()}  Ticks Today: {self.periods_in_day}")
+                        logging.info('-------------------------------')
+                            
+                        self.periods_in_day = 0
+                    else:
+                        self.start_of_period += timedelta(seconds=self.interval)
+                else:
+                    self.aggregator.add_tick(tick)
+
+                # await asyncio.sleep(0.5)
+
+            if any(self.aggregator.ticks.values()):
+                aggregated_data = self.aggregator.aggregate_period()
+                # await websocket.send(json.dumps(aggregated_data))
+                # print(f'Sent aggregated data:\n {aggregated_data}\n')

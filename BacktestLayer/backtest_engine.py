@@ -10,14 +10,14 @@ once the signal is recieved we can delete all price data from before that time-s
 use the current price 1 second after the signal is recieved to place market order
 
 Tasks for BacktestEngine: 
-[ ] Initialization 
-    [ ] Bankroll
-    [ ] Start date
-    [ ] Period length (for pnl calculation)
+[x] Initialization 
+    [x] Bankroll
+    [x] Start date
+    [x] Period length (for pnl calculation)
 
 [ ] Websockets
-    [ ] On rceive tick data
-        [ ] Store tick data for price lookup
+    [x] On rceive tick data
+        [x] Store tick data for price lookup
     [ ] On receive signal data
         [ ] Place order
 
@@ -35,26 +35,69 @@ Tasks for BacktestEngine:
 """
 import asyncio
 import websockets
+from sortedcontainers import SortedDict
 from datetime import datetime, timedelta
 from typing import Dict
+from BacktestLayer.tick import Tick
+import pickle
+from Common.exceptions import IncorrectObjectType
+import logging
 
 TICK_PRICE_WS_PORT=8005
 SIGNAL_INFO_WS_PORT=8006
 
+SymbolPriceLookup = Dict[str, SortedDict[datetime, Tick]]
+
+def find_prior_timestamp(price_history: SortedDict[datetime, float], query_time: datetime):
+    pass
 
 class BacktestEngine():
     
-    def __init__(self, bankroll: float, start_date: datetime, period_length: timedelta):
+    def __init__(self, bankroll: float, start_date: datetime, period_length: timedelta, trading_symbol: str):
         self.bankroll = bankroll
         self.start_date = start_date
         self.period_length = period_length
+        self.trading_symbol = trading_symbol
 
-        self.price_history: Dict[datetime, float] = {}
+        self.price_history: SymbolPriceLookup = {}
         self.pnl: Dict[datetime, float] = {}
         self.period_number = 0
 
-    def handle_ticks(self, websocket):
-        pass
+    def display_price_history(self, symbol=None):
+        if not symbol:
+            symbol = self.trading_symbol
+        
+        historical_symbol_prices = self.price_history.get(symbol)
+        if not historical_symbol_prices:
+            return
+        
+        logging.info(f"\n\nPrice history for: {symbol}")
+        for key,value in historical_symbol_prices.items():
+            logging.info(f"Historical price at {key} -> {value.close}")
+
+    async def handle_ticks(self, websocket):
+        # will arrive as a pickle bytestream, need to unpack and extract timestamp
+        # every tick that we get will be formatted as a json string
+        # need to unpack and store in
+        async for tick in websocket:
+            try:
+                tick_obj: Tick = pickle.loads(tick)
+                if type(tick_obj) != Tick:
+                    raise IncorrectObjectType(type(tick_obj))
+            except IncorrectObjectType as e:
+                logging.error(f"Expexted type 'Tick' recieved: {e}")
+            else:
+                symbol = tick_obj.symbol
+                if symbol != self.trading_symbol:
+                    continue
+
+                timestamp = tick_obj.ts_event
+                if not self.price_history.get(symbol):
+                    self.price_history[symbol] = SortedDict()
+
+                self.price_history[symbol][timestamp] = tick_obj
+            
+            # self.display_price_history()
 
     def handle_signals(self, websocket):
         pass
@@ -63,10 +106,8 @@ class BacktestEngine():
         # need to serve to endpoints
             # price data
             # signal data
-        rec_tick_ws   = websockets.serve(self.handle_ticks, 'loclahost', TICK_PRICE_WS_PORT)
+        logging.info(f"Starting rec_tick and rec_signal websocket servers on ports {TICK_PRICE_WS_PORT} and {SIGNAL_INFO_WS_PORT}")
+        rec_tick_ws   = websockets.serve(self.handle_ticks, 'localhost', TICK_PRICE_WS_PORT)
         rec_signal_ws = websockets.serve(self.handle_signals, 'localhost', SIGNAL_INFO_WS_PORT)
         await asyncio.gather(rec_signal_ws, rec_tick_ws)
-
-
-
-
+        logging.info("rec_tick and rec_signal websocket servers started")

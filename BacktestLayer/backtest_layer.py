@@ -1,12 +1,16 @@
 import websockets
 import asyncio
-from datetime import datetime
+from datetime import datetime, timedelta
 from Common.decorators import backoff_reconnect
 from BacktestLayer.backtest_data_stream import StreamingEngine
+from BacktestLayer.backtest_engine import BacktestEngine
 import os
 import sys
 from dotenv import load_dotenv
 from pathlib import Path
+import logging
+
+logging.basicConfig(level=logging.INFO, format='%(levelname)s - %(message)s')
 
 
 project_dir = os.path.abspath(os.path.dirname(__file__))
@@ -17,12 +21,22 @@ async def run_backtest():
     pass
 
 async def main():
-    print("Starting Backtest Layer websocket server on localhost:8003")
-    backtest_websocket_server = websockets.serve(run_backtest, 'localhost', 8003)
-    await backtest_websocket_server
+    # print("Starting Backtest Layer websocket server on localhost:8003")
+    # backtest_websocket_server = websockets.serve(run_backtest, 'localhost', 8003)
+    # await backtest_websocket_server
+
+    backtest_engine = BacktestEngine(
+        bankroll=1000000.0,
+        start_date=datetime(2023,7,1),
+        period_length=timedelta(days=1),
+        trading_symbol='RIVN'
+    )
+
+    await backtest_engine.run()
 
     backtest_streamer = StreamingEngine(
         model_ws_url='ws://localhost:8001', # backtesting layer streams data to model layer
+        backtest_ws_url='ws://localhost:8005',
         data_file_path=r'./BacktestLayer/data/nasdaq_stocks_last_year.csv',
         start_date=datetime(2023, 7, 1),
         interval=60,  # measured in seconds
@@ -34,7 +48,6 @@ async def main():
 
     # on a separate thread start streaming data
     asyncio.create_task(backtest_streamer.stream_data())
-
     await asyncio.Future()  # run event loop forever
 
 if __name__ == '__main__':
