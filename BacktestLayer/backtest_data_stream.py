@@ -1,7 +1,7 @@
 import csv
 from datetime import datetime, time, timedelta
 from typing import Dict, List
-from tick import Tick
+from BacktestLayer.tick import Tick
 
 class TickGenerator:
     # will only generate ticks from during trading hours
