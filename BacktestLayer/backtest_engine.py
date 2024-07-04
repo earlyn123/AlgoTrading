@@ -29,15 +29,44 @@ Tasks for BacktestEngine:
     [ ] Calculate PNL
     [ ] Log PNL from each period
 
-[ ] Entrypoint
-    [ ] Start tick socket server
-    [ ] Start signal socket server
+[x] Entrypoint
+    [x] Start tick socket server
+    [x] Start signal socket server
 """
 import asyncio
 import websockets
+from datetime import datetime, timedelta
+from typing import Dict
+
+TICK_PRICE_WS_PORT=8005
+SIGNAL_INFO_WS_PORT=8006
+
 
 class BacktestEngine():
-    pass
+    
+    def __init__(self, bankroll: float, start_date: datetime, period_length: timedelta):
+        self.bankroll = bankroll
+        self.start_date = start_date
+        self.period_length = period_length
+
+        self.price_history: Dict[datetime, float] = {}
+        self.pnl: Dict[datetime, float] = {}
+        self.period_number = 0
+
+    def handle_ticks(self, websocket):
+        pass
+
+    def handle_signals(self, websocket):
+        pass
+
+    async def run(self):
+        # need to serve to endpoints
+            # price data
+            # signal data
+        rec_tick_ws   = websockets.serve(self.handle_ticks, 'loclahost', TICK_PRICE_WS_PORT)
+        rec_signal_ws = websockets.serve(self.handle_signals, 'localhost', SIGNAL_INFO_WS_PORT)
+        await asyncio.gather(rec_signal_ws, rec_tick_ws)
+
 
 
 
