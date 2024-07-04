@@ -32,14 +32,14 @@ async def clear_queue(queue):
 @backoff_reconnect()
 async def process_trades(model_ws):
     global trade_queue
-
-    # clear_queue()
-    # await asyncio.sleep(SIGNAL_FREQUENCY)
+    
     while True:
+        sys.stdout.flush()
         trades = []
         while not trade_queue.empty():
             trade = await trade_queue.get()
             trades.append(trade)
+
         if trades:
             clean_data = clean_chunk(trades)
             aggregated_data = aggregate_trades(clean_data)
@@ -47,6 +47,7 @@ async def process_trades(model_ws):
 
             aggregated_data_json = json.dumps(aggregated_data)
             await send_socket_message(aggregated_data_json, model_ws)
+            trades = []
         else:
             print(f"No trades came during this {SIGNAL_FREQUENCY} second window")
 

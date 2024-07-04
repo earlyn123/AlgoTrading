@@ -68,12 +68,13 @@ async def place_order(signal_data: dict, gateway: IB):
             return ("No trade was placed this period (NOOP)", None, None)
         
         contract = Stock(signal_data['ticker'], 'SMART', 'USD')
-        gateway.placeOrder(contract, order) 
+        # gateway.placeOrder(contract, order) 
         return ("Trade placed successfully", contract, order)
     except OrderException as e:
         return (f"Trade failed to process {e}", None, None)
 
 async def handle_signal_stream(websocket, path, gateway: IB):
+    print("Model client connected")
     async for signal in websocket:
         signal_data = json.loads(signal)
         print(f"Recieved JSON Signal\n{signal_data}")
@@ -81,24 +82,29 @@ async def handle_signal_stream(websocket, path, gateway: IB):
         print(f"Submitted Trade:\n - {placed_contract}\n - {placed_order}\n")
 
 async def start_exe_ws_server(ib_gateway: IB):
+    print("Starting execution WebSocket server on localhost:8002")
     execution_ws_server = websockets.serve(
         partial(handle_signal_stream, gateway=ib_gateway),
         "localhost", 8002
     )
     await execution_ws_server
+    print("WebSocket server started")
     await asyncio.Future()
     
 async def main():
-    print("Connecting to IB Gateway")
+    IB_CONNECTION_ON=True
     ib = IB()
-    try:
-        ib.connect('127.0.0.1', 7497, clientId=1)
-    except Exception as e:
-        print(f"IB Connection Failed: {e}")
+    if IB_CONNECTION_ON:
+        print("Connecting to IB Gateway")
+        try:
+            ib.connect('127.0.0.1', 7497, clientId=1)
+        except Exception as e:
+            print(f"IB Connection Failed: {e}")
+        else:
+            # ib.placeOrder(Stock('PLTR', 'SMART', 'USD'), MarketOrder('BUY', 100))
+            ib.run(start_exe_ws_server(ib))
     else:
-        print("Starting execution WebSocket server on localhost:8002")
-        # ib.placeOrder(Stock('PLTR', 'SMART', 'USD'), MarketOrder('BUY', 100))
-        ib.run(start_exe_ws_server(ib))
+        await start_exe_ws_server(ib)
 
 if __name__ == '__main__':
     asyncio.run(main())

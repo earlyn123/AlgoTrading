@@ -48,8 +48,18 @@ SIGNAL_INFO_WS_PORT=8006
 
 SymbolPriceLookup = Dict[str, SortedDict[datetime, Tick]]
 
-def find_prior_timestamp(price_history: SortedDict[datetime, float], query_time: datetime):
-    pass
+def retrieve_most_recent_tick(price_history: SortedDict[datetime, Tick], query_time: datetime):
+    if query_time in price_history:
+        return price_history[query_time]
+    
+    index = price_history.bisect_left(query_time)
+
+    # this means there is no historical price data for the instrument
+    if index == 0:
+        return None
+    
+    nearest_prior_tick = price_history.iloc[index-1]
+    return price_history[nearest_prior_tick]
 
 class BacktestEngine():
     
@@ -77,8 +87,7 @@ class BacktestEngine():
 
     async def handle_ticks(self, websocket):
         # will arrive as a pickle bytestream, need to unpack and extract timestamp
-        # every tick that we get will be formatted as a json string
-        # need to unpack and store in
+        # need to unpack and store in self.price_history
         async for tick in websocket:
             try:
                 tick_obj: Tick = pickle.loads(tick)
@@ -87,6 +96,7 @@ class BacktestEngine():
             except IncorrectObjectType as e:
                 logging.error(f"Expexted type 'Tick' recieved: {e}")
             else:
+                # only need to track ticks for instruments we are trading
                 symbol = tick_obj.symbol
                 if symbol != self.trading_symbol:
                     continue
@@ -98,7 +108,7 @@ class BacktestEngine():
                 self.price_history[symbol][timestamp] = tick_obj
             
             # self.display_price_history()
-
+            
     def handle_signals(self, websocket):
         pass
 
